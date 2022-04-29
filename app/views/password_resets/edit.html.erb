@@ -1,11 +1,27 @@
 <h1>Forgot Password</h1>
 
-<%= form_with url: password_reset_path do |form| %>
+<%= form_with model: @user, url: password_reset_edit_path(token: params[:token]) do |form| %>
+  <% if form.errors.any? %>
+    <div class="alert alert-danger">
+      <% form.errors.full_messages.each do |message| %>
+        <div><%= message %></div>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="mb-3">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: "form-control" %>
+    <%= form.label :password %>
+    <%= form.password_field :password, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= form.label :password_field %>
+    <%= form.password_field :password_confirmation, class: "form-control" %>
   </div>
   <div class="mb-3">
     <%= form.submit "Reset password", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+Qvp1z0qH2OcnWMSfIIWwjFuac
+
+ad7WkzzkJ6wEP7PBg2XzPDysjT7K9rONNk1cNQXuRJ23T5SuDk
