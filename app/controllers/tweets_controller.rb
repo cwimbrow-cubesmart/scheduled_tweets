@@ -24,6 +24,7 @@ class TweetsController < ApplicationController
 
   def update
     if @tweet.update(tweet_params)
+      TweetJob.set(wait_until: @tweet.publish_at).perform_later(@tweet)
       redirect_to tweets_path, notice: 'Scheduled Successfully'
     else
       render :edit
